@@ -35,7 +35,7 @@ project(GA-Benchmark
   LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 17)
+# set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(CTest)
@@ -104,10 +104,10 @@ set(MODELS_LIST
 
 set(ConformalModel_ENABLED TRUE)
 set(ConformalModel_EXTRA_DIMENSIONS 2)
-set(ConformalModel_MIN_D_DIMENSIONS 2)
+set(ConformalModel_MIN_D_DIMENSIONS 3)
 set(ConformalModel_MAX_D_DIMENSIONS 3)
 
-set(EuclideanModel_ENABLED TRUE)
+set(EuclideanModel_ENABLED FALSE)
 set(EuclideanModel_EXTRA_DIMENSIONS 0)
 set(EuclideanModel_MIN_D_DIMENSIONS 2)
 set(EuclideanModel_MAX_D_DIMENSIONS 5)
@@ -117,7 +117,7 @@ set(HomogeneousModel_EXTRA_DIMENSIONS 1)
 set(HomogeneousModel_MIN_D_DIMENSIONS 2)
 set(HomogeneousModel_MAX_D_DIMENSIONS 4)
 
-set(MinkowskiModel_ENABLED TRUE)
+set(MinkowskiModel_ENABLED FALSE)
 set(MinkowskiModel_EXTRA_DIMENSIONS 2)
 set(MinkowskiModel_MIN_D_DIMENSIONS 2)
 set(MinkowskiModel_MAX_D_DIMENSIONS 3)
@@ -161,7 +161,7 @@ endforeach()
 
 # Set operations and parameters
 set(OPERATIONS_LIST
-  AlgorithmInverseKinematics
+  # AlgorithmInverseKinematics
   BinaryOperations
   UnaryOperations
 )
@@ -187,6 +187,11 @@ message(STATUS "Benchmarks:")
 
 foreach(SOLUTION ${SOLUTIONS_LIST})
   if(${${SOLUTION}_ENABLED})
+    if("${SOLUTION}" STREQUAL "gafro")
+      set(CMAKE_CXX_STANDARD 20)
+    else()
+      set(CMAKE_CXX_STANDARD 17)
+    endif()
     message(STATUS "")
     message(STATUS "  - " ${SOLUTION})
 
@@ -249,6 +254,14 @@ foreach(SOLUTION ${SOLUTIONS_LIST})
                 )
 
                 set_tests_properties(${TARGET_NAME} PROPERTIES TIMEOUT ${${OPERATION}_TIMEOUT})
+
+                if("${SOLUTION}" STREQUAL "gafro")
+                  target_compile_options(${TARGET_NAME}
+                    PUBLIC
+                      "-march=native"
+                      "-O3"
+                  )
+                endif()
               endforeach()
             endforeach()
           endforeach()
@@ -284,6 +297,14 @@ foreach(SOLUTION ${SOLUTIONS_LIST})
               )
 
               set_tests_properties(${TARGET_NAME} PROPERTIES TIMEOUT ${${OPERATION}_TIMEOUT})
+
+              if("${SOLUTION}" STREQUAL "gafro")
+                target_compile_options(${TARGET_NAME}
+                  PUBLIC
+                    "-march=native"
+                    "-O3"
+                )
+              endif()
             endforeach()
           endforeach()
         endif()

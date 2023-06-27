@@ -22,9 +22,10 @@ set(GENERATED_HPG_FILE "${Gaalop_OPTIMIZATION_DIR}/SpecializedAlgorithmInverseKi
 set(GENERATED_HPP_FILE "${Gaalop_OPTIMIZATION_DIR}/SpecializedAlgorithmInverseKinematics.hpp")
 
 execute_process(COMMAND ${CMAKE_COMMAND} -E compare_files "${ORIGINAL_HPG_FILE}" "${GENERATED_HPG_FILE}" RESULT_VARIABLE FILES_ARE_DIFFERENT)
-if(FILES_ARE_DIFFERENT)
+# if(${FILES_ARE_DIFFERENT})
   file(MAKE_DIRECTORY ${Gaalop_OPTIMIZATION_DIR})
   file(COPY "${ORIGINAL_HPG_FILE}" DESTINATION ${Gaalop_OPTIMIZATION_DIR})
   get_filename_component(Gaalop_JAR_DIR ${Gaalop_JAR_FILE} DIRECTORY)
+  message(${Gaalop_JAR_DIR})
   execute_process(COMMAND "${Java_JAVA_EXECUTABLE}" -jar "${Gaalop_JAR_FILE}" -algebraBaseDir "${CMAKE_CURRENT_LIST_DIR}/algebras" -algebraName "${Gaalop_ALGEBRA_NAME}" -m "${MAXIMA_BIN}" -optimizer "de.gaalop.tba.Plugin" -generator "de.gaalop.compressed.Plugin" -i "${GENERATED_HPG_FILE}" -o "${GENERATED_HPP_FILE}" WORKING_DIRECTORY "${Gaalop_JAR_DIR}")
-endif()
+# endif()
