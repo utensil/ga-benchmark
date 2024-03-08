@@ -255,13 +255,13 @@ foreach(SOLUTION ${SOLUTIONS_LIST})
 
                 set_tests_properties(${TARGET_NAME} PROPERTIES TIMEOUT ${${OPERATION}_TIMEOUT})
 
-                if("${SOLUTION}" STREQUAL "gafro")
+                # if("${SOLUTION}" STREQUAL "gafro")
                   target_compile_options(${TARGET_NAME}
                     PUBLIC
                       "-march=native"
                       "-O3"
                   )
-                endif()
+                # endif()
               endforeach()
             endforeach()
           endforeach()
@@ -298,13 +298,13 @@ foreach(SOLUTION ${SOLUTIONS_LIST})
 
               set_tests_properties(${TARGET_NAME} PROPERTIES TIMEOUT ${${OPERATION}_TIMEOUT})
 
-              if("${SOLUTION}" STREQUAL "gafro")
+              # if("${SOLUTION}" STREQUAL "gafro")
                 target_compile_options(${TARGET_NAME}
                   PUBLIC
                     "-march=native"
                     "-O3"
                 )
-              endif()
+              # endif()
             endforeach()
           endforeach()
         endif()
@@ -314,3 +314,5 @@ foreach(SOLUTION ${SOLUTIONS_LIST})
 endforeach()
 
 message(STATUS "")
+
+add_subdirectory(evaluation)

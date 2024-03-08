@@ -23,46 +23,49 @@
 
 GABM_DEFINE_BINARY_OPERATION(Addition, lhs, rhs)
 {
-    return lhs + rhs;
+    return (lhs + rhs);
 }
 
-GABM_DEFINE_BINARY_OPERATION(CommutatorProduct, lhs, rhs)
-{
-    return lhs % rhs;
-}
+GABM_REPORT_BINARY_OPERATION_IS_NOT_IMPLEMENTED(CommutatorProduct)
 
 GABM_REPORT_BINARY_OPERATION_IS_NOT_IMPLEMENTED(DotProduct)
 
 GABM_DEFINE_BINARY_OPERATION(GeometricProduct, lhs, rhs)
 {
-    return lhs * rhs;
+    return (lhs * rhs);
 }
 
 GABM_DEFINE_BINARY_OPERATION(HestenesInnerProduct, lhs, rhs)
 {
-    return lhs <= rhs;
+    return (lhs | rhs);
 }
 
 GABM_DEFINE_BINARY_OPERATION(InverseGeometricProduct, lhs, rhs)
 {
-    return lhs / rhs;
+    return (lhs * rhs.inverse());
 }
 
 GABM_DEFINE_BINARY_OPERATION(LeftContraction, lhs, rhs)
 {
-    return lhs <= rhs;
+    return (lhs | rhs);
 }
 
 GABM_DEFINE_BINARY_OPERATION(OuterProduct, lhs, rhs)
 {
-    return lhs ^ rhs;
+    return (lhs ^ rhs);
 }
 
-GABM_REPORT_BINARY_OPERATION_IS_NOT_IMPLEMENTED(RightContraction)
+GABM_DEFINE_BINARY_OPERATION(RightContraction, lhs, rhs)
+{
+    return lhs | rhs;
+}
 
 GABM_REPORT_BINARY_OPERATION_IS_NOT_IMPLEMENTED(RegressiveProduct)
 
-GABM_REPORT_BINARY_OPERATION_IS_NOT_IMPLEMENTED(ScalarProduct)
+GABM_DEFINE_BINARY_OPERATION(ScalarProduct, lhs, rhs)
+{
+    return lhs.scalarProduct(rhs);
+}
 
 GABM_DEFINE_BINARY_OPERATION(Subtraction, lhs, rhs)
 {

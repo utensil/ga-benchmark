@@ -21,7 +21,7 @@
 #ifndef __GABM_SPECIALIZED_UTILS_HPP__
 #define __GABM_SPECIALIZED_UTILS_HPP__
 
-#include <gafro/gafro.hpp>
+#include <gal/cga.hpp>
 
 template <int grade> auto makeGrade();
 
@@ -67,7 +67,7 @@ template <> auto makeGrade<5>()
 
 GABM_DEFINE_MAKE_BLADE(scalar_factor, vector_factors, grade)
 {
-    return makeGrade<grade>();
+    return makeGrade<1>();
 }
 
 GABM_DEFINE_SQUARED_REVERSE_NORM(arg, grade)

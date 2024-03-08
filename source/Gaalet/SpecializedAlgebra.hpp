@@ -29,16 +29,16 @@
 
 // Gaalet requires mapping from Minkoski to Conformal and vice-versa.
 
-#if GABM_CHECK_OPERATION(BinaryOperations) || GABM_CHECK_OPERATION(UnaryOperations)
+// #if GABM_CHECK_OPERATION(BinaryOperations) || GABM_CHECK_OPERATION(UnaryOperations)
 
 // Only native implementations of the model are considered for binary and unary operations.
-#define GABM_MODEL_NOT_IMPLEMENTED
+// #define GABM_MODEL_NOT_IMPLEMENTED
 
-#else
+// #else
 
 using space = gaalet::algebra<gaalet::signature<(GABM_D_DIMENSIONS) + 1, 1>, gabm::real_t>;
 
-#endif
+// #endif
 
 #elif GABM_CHECK_MODEL(EuclideanModel)
 

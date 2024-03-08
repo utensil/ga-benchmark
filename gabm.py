@@ -308,12 +308,13 @@ def _parse_benchmark_name(name: str) -> Tuple[str, str, str, str, int, dict, dic
     solution_key, model_key, d, args, extra_context = None, None, None, dict(), dict()
     for pair in params[1:]:
         key, value = pair.split(':')
+        key = key.replace(' ', '');
         if key == 'SystemName' or key == 'SystemVersion' or key == 'CompilerVersion':
-            extra_context[key] = value
+            extra_context[key] = value.replace(' ', '')
         elif key == 'CompilerID':
-            extra_context['CompilerName'] = _COMPILER_ID_TO_NAME[value]
+            extra_context['CompilerName'] = value
         elif key == 'Solution':
-            solution_key = value
+            solution_key = value.replace(' ', '')
         elif key == 'Model':
             model_key = _MODEL_ID_TO_KEY[int(value, base=16)]
         elif key == 'D':
@@ -864,13 +865,14 @@ def main(argsv=None):
 
     SOLUTIONS = {  # You have to include your solution here if you have added it to ga-benchmark.
         'Gaalet': {'description': 'Gaalet'},
-        'Gaalop': {'description': 'Gaalop'},
+        # 'Gaalop': {'description': 'Gaalop'},
         'Garamon': {'description': 'Garamon'},
         'GATL': {'description': 'GATL'},
-        'GluCatFramedMulti': {'description': 'GluCat (framed)'},
-        'GluCatMatrixMulti': {'description': 'GluCat (matrix)'},
+        # 'GluCatFramedMulti': {'description': 'GluCat (framed)'},
+        # 'GluCatMatrixMulti': {'description': 'GluCat (matrix)'},
         'TbGAL': {'description': 'TbGAL'},
-        'Versor': {'description': 'Versor'}
+        'Versor': {'description': 'Versor'},
+        'gafro': {'description': 'gafro'}
     }
 
     input_folder = args['input']

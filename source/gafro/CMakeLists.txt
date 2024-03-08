@@ -1,7 +1,7 @@
 set(gafro_SUCCESS true)
 
 # Find gafro library
-find_library(gafro_LIBRARY NAMES gafro HINTS "${CMAKE_CURRENT_SOURCE_DIR}/libs/gafro/install/usr/local/lib/gafro")
+find_library(gafro_LIBRARY NAMES gafro HINTS "${CMAKE_CURRENT_SOURCE_DIR}/libs/gafro/install/lib/gafro")
 if(NOT EXISTS ${gafro_LIBRARY})
   # message(WARNING "The path defined in gafro_LIBRARY doesn't exist.")
   set(gafro_SUCCESS false)
@@ -14,7 +14,7 @@ find_package(Eigen3)
 # )
 
 # Set (global) include directories and libraries
-set(gafro_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs/gafro/install/usr/local/include/gafro" CACHE PATH "The include directory of the gafro library.")
+set(gafro_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs/gafro/install/include/gafro" CACHE PATH "The include directory of the gafro library.")
 set(gafro_INCLUDE_EXTRA_DIR "${EIGEN3_INCLUDE_DIR}") # no dependencies
 
 if(NOT EXISTS ${gafro_INCLUDE_DIR})
