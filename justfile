@@ -4,7 +4,7 @@ pb:
   # brew link cairomm --force
   # brew link pangomm --force
   # xrepo install benchmark
-  xrepo env -b benchmark -b eigen xmake require -v -y -r -f gabench
+  xrepo env -b benchmark -b eigen xmake require -v -y -f gabench
   # xrepo env -b benchmark -b gabench xmake -y
 
 pbm:
