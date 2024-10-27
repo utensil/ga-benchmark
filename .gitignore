@@ -15,3 +15,9 @@
 /results
 /gabm_results-checkpoint.ipynb
 .xmake/
+CMakeFiles
+CMakeCache.txt
+CTestTestfile.cmake
+DartConfiguration.tcl
+Makefile
+cmake_install.cmake

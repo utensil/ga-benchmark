@@ -89,7 +89,7 @@ add_requires("gabench")
 
 target("bench")
   set_kind("phony")
-  add_deps("gabench")
+  add_packages("gabench")
   -- add_deps("cmake")
 
   on_run(function (target)

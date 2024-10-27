@@ -1,11 +1,14 @@
-prep-bench:
+pb:
   #!/usr/bin/env bash
   # brew install cairomm pangomm
   # brew link cairomm --force
   # brew link pangomm --force
   # xrepo install benchmark
-  xrepo env -b benchmark xmake -y -r 
-  xrepo env -b benchmark -b gabench xmake -y
+  xrepo env -b benchmark -b eigen xmake require -v -y -r -f gabench
+  # xrepo env -b benchmark -b gabench xmake -y
+
+pbm:
+  xrepo env -y -b benchmark -b eigen bash -c "cmake -DCMAKE_BUILD_TYPE=Release . & cmake --build . --parallel 8"
 
 @find NAME:
     xmake require -v --search {{NAME}} || true
