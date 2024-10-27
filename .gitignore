@@ -21,3 +21,4 @@ CTestTestfile.cmake
 DartConfiguration.tcl
 Makefile
 cmake_install.cmake
+.clangd

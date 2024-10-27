@@ -1,0 +1,3 @@
+# Replace ~ to absolute paths
+CompileFlags:
+  Add: -i~/ga-benchmark/libs/GAL/public
