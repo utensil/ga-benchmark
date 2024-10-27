@@ -5,10 +5,10 @@ set(GAL_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs/GAL/public" CACHE PATH "Th
 set(GAL_INCLUDE_EXTRA_DIR "") # no dependencies
 
 if(NOT EXISTS ${GAL_INCLUDE_DIR})
-  message(WARNING "The path defined in GAL_INCLUDE_DIR doesn't exist.")
+  # message(WARNING "The path defined in GAL_INCLUDE_DIR doesn't exist.")
   set(GAL_SUCCESS false)
 else()
-  message(STATUS "The path defined in GAL_INCLUDE_DIR exists.")
+  # message(STATUS "The path defined in GAL_INCLUDE_DIR exists.")
 endif()
 
 set(GAL_LIBS_INIT ${GAL_LIBRARY})
@@ -27,10 +27,12 @@ set(GAL_UnaryOperations_LIBS_INIT "")
 
 # Job done!
 if(${GAL_SUCCESS})
-  message(STATUS "Enabling GAL library.")
+  # message(STATUS "Enabling GAL library.")
   set(GAL_ENABLED true)
 else()
-  message(STATUS "Disabling GAL library.")
+  # message(STATUS "Disabling GAL library.")
   set(GAL_ENABLED false)
 endif()
+
+set(GAL_ENABLED false)
 

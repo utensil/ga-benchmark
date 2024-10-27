@@ -56,7 +56,7 @@ set(Versor_UnaryOperations_LIBS_INIT "")
 
 # Job done!
 if(${Versor_SUCCESS})
-  set(Versor_ENABLED true CACHE BOOL "If set, the Versor library will be added to the benchmark.")
+  set(Versor_ENABLED true)
 else()
-  set(Versor_ENABLED false CACHE BOOL "If set, the Versor library will be added to the benchmark." FORCE)
+  set(Versor_ENABLED false)
 endif()

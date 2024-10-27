@@ -24,6 +24,15 @@ libs := "libs"
 
 prep-gal: (clone "https://github.com/jeremyong/gal" "GAL" "master")
 
+prep-versor: (clone "https://github.com/wolftype/versor" "Versor/repository" "devel")
+    #!/usr/bin/env bash
+    mkdir libs/Versor/repository/build
+    mkdir libs/Versor/install
+    cd libs/Versor/repository/build
+    cmake -DCMAKE_BUILD_TYPE=Release ..
+    make
+    make DESTDIR=../../install install
+
 @find NAME:
     xmake require -v --search {{NAME}} || true
     xmake require -v --search "vcpkg::{{NAME}}" || true
