@@ -86,7 +86,6 @@ Required tools:
 Required C++ libraries:
 
 - [Google Benchmark](https://github.com/google/benchmark)
-- [scatter](https://gitlab.com/tloew/scatter)
 - Threads (`pthread` library on Linux, `shlwapi` library on Windows, and `kstat` library on Solaris)
 
 Required Python modules:

@@ -315,4 +315,4 @@ endforeach()
 
 message(STATUS "")
 
-add_subdirectory(evaluation)
+# add_subdirectory(evaluation)

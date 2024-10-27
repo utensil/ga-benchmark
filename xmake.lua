@@ -3,9 +3,9 @@ add_rules("mode.release") -- ("mode.debug") -- , "mode.release")
 set_languages("c++20")
 
 add_requires("benchmark")
-add_requires("yaml-cpp")
-add_requires("eigen")
-add_requires("scatter master")
+--[[ add_requires("yaml-cpp") ]]
+-- add_requires("eigen")
+--[[ add_requires("scatter master") ]]
 -- add_requires("conan::cairomm/1.18.0")
 -- add_requires("conan::pangomm/2.54.0")
 -- add_requires("brew::cairomm 1.18.0")
@@ -54,26 +54,29 @@ local my_download = function (package, opt)
    package:originfile_set(path.absolute(packagefile))
 end
 
-package("scatter")
-  set_urls("https://gitlab.com/tloew/scatter/-/archive/$(version)/scatter-$(version).tar.gz")
-  add_versions("master", "329e3b255f762fb694ecc3b83ee3b49ebbbab634ba87579c9eabc0185619b023")
-  add_versions("v0.1.0", "d1738773c3b38653ba143d55d64deeead084d29db933d2bf82c4e22441fad6dc")
+-- package("scatter")
+--   set_urls("https://gitlab.com/tloew/scatter/-/archive/$(version)/scatter-$(version).tar.gz")
+--   add_versions("master", "329e3b255f762fb694ecc3b83ee3b49ebbbab634ba87579c9eabc0185619b023")
+--   add_versions("v0.1.0", "d1738773c3b38653ba143d55d64deeead084d29db933d2bf82c4e22441fad6dc")
 
-  on_download(my_download)
-  
-  on_install(function (package)
-      local configs = {}
-      -- table.insert(configs, "-DCMAKE_BUILD_TYPE=" .. (package:debug() and "Debug" or "Release"))
-      -- table.insert(configs, "-DBUILD_SHARED_LIBS=" .. (package:config("shared") and "ON" or "OFF"))
-      import("package.tools.cmake").install(package, configs)
-  end)
-  -- on_test(function (package)
-  --     assert(package:has_cfuncs("add", {includes = "foo.h"}))
-  -- end)
-package_end()
+--   on_download(my_download)
+--   
+--   on_install(function (package)
+--       local configs = {}
+--       -- table.insert(configs, "-DCMAKE_BUILD_TYPE=" .. (package:debug() and "Debug" or "Release"))
+--       -- table.insert(configs, "-DBUILD_SHARED_LIBS=" .. (package:config("shared") and "ON" or "OFF"))
+--       import("package.tools.cmake").install(package, configs)
+--   end)
+--   -- on_test(function (package)
+--   --     assert(package:has_cfuncs("add", {includes = "foo.h"}))
+--   -- end)
+-- package_end()
 
 package("gabench")
   set_sourcedir(os.scriptdir())
+
+  add_deps("benchmark")
+
   on_install(function (package)
     local configs = {}
     table.insert(configs, "-DCMAKE_BUILD_TYPE=" .. "Release")
@@ -81,6 +84,8 @@ package("gabench")
     import("package.tools.cmake").install(package,configs)
   end)
 package_end()
+
+add_requires("gabench")
 
 -- target("bench")
 --   -- set_kind("phony")

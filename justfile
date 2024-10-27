@@ -1,10 +1,11 @@
 prep-bench:
   #!/usr/bin/env bash
-  brew install cairomm pangomm
-  brew link cairomm --force
-  brew link pangomm --force
-  xrepo install benchmark
-  xrepo env -y xmake build bench
+  # brew install cairomm pangomm
+  # brew link cairomm --force
+  # brew link pangomm --force
+  # xrepo install benchmark
+  xrepo env -b benchmark xmake -y -r 
+  xrepo env -b benchmark -b gabench xmake -y
 
 @find NAME:
     xmake require -v --search {{NAME}} || true
@@ -23,3 +24,7 @@ prep-bench:
 
 @list:
     xmake require --list
+
+clean:
+    rm -rf build
+    xmake clean
