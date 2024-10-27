@@ -87,19 +87,20 @@ package_end()
 
 add_requires("gabench")
 
--- target("bench")
---   -- set_kind("phony")
---   -- add_deps("cmake")
+target("bench")
+  set_kind("phony")
+  add_deps("gabench")
+  -- add_deps("cmake")
 
---   on_run(function (target)
---     -- Package:addenv("benchmark_DIR", "")
--- -- mkdir build
--- -- cd build
--- -- cmake -DCMAKE_BUILD_TYPE=Release ..
--- -- cmake --build . --parallel 8
---     -- os.run("mkdir -p build")
---     -- os.cd("build")
---     -- os.run("cmake -DCMAKE_BUILD_TYPE=Release ..")
---     -- os.run("cmake --build . --parallel 8")
---   end)
+  on_run(function (target)
+    -- Package:addenv("benchmark_DIR", "")
+-- mkdir build
+-- cd build
+-- cmake -DCMAKE_BUILD_TYPE=Release ..
+-- cmake --build . --parallel 8
+    -- os.run("mkdir -p build")
+    -- os.cd("build")
+    -- os.run("cmake -DCMAKE_BUILD_TYPE=Release ..")
+    -- os.run("cmake --build . --parallel 8")
+  end)
 

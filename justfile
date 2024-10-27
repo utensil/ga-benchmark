@@ -27,4 +27,5 @@ prep-bench:
 
 clean:
     rm -rf build
+    rm -rf .xmake
     xmake clean
